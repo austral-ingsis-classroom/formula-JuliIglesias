@@ -1,5 +1,8 @@
 package edu.austral.ingsis.math;
 
+import edu.austral.ingsis.math.functions.Simple;
+import edu.austral.ingsis.math.operations.Addition;
+import edu.austral.ingsis.math.registers.RegisterVariable;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -7,13 +10,24 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ListVariablesTest {
 
+  MathEngine mathEngine = new MathEngine();
+  Map<String, Double> variables = new LinkedHashMap<>();
   /** Case 1 + 6 */
   @Test
   public void shouldListVariablesFunction1() {
+    Map<String, Double> variables = new LinkedHashMap<>();
+    variables.put("a", 1.0);
+    variables.put("b", 6.0);
+    RegisterVariable registerVariable = new RegisterVariable(variables);
+    Simple function = new Simple(1,6, new Addition());
+    double rst = mathEngine.completeFunction(registerVariable,function);
+
     final List<String> result = Collections.emptyList();
 
     assertThat(result, empty());

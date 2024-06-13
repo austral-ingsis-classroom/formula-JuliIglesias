@@ -1,0 +1,97 @@
+@startuml
+'https://plantuml.com/class-diagram
+class MathEngine{
+    '- List<Function> functionTypes --> complete recibe String'
+
+    + completeFunction(RegisterVar variables, Function function) : Double
+
+}
+
+interface Operation{
+    - String operationTypes
+
+    + doOperation(List<Double> numbers) : Double
+}
+
+class Add implements Operation{
+    - String operationTypes
+
+    + doOperation(List<Double> numbers) : Double
+}
+class Sub implements Operation{
+    - String operationTypes
+
+    + doOperation(List<Double> numbers) : Double
+}
+class Div implements Operation{
+    - String operationTypes
+
+    + doOperation(List<Double> numbers) : Double
+}
+class Mult implements Operation{
+    - String operationTypes
+
+    + doOperation(List<Double> numbers) : Double
+}
+class Sqrt implements Operation{
+    - String operationTypes
+
+    + doOperation(List<Double> numbers) : Double
+}
+class Power implements Operation{
+    - String operationTypes
+
+    + doOperation(List<Double> numbers) : Double
+}
+class Module implements Operation{
+    - String operationTypes
+
+    + doOperation(List<Double> numbers) : Double
+}
+
+
+interface Function {
+    - List<String> variables
+
+    + evaluate(Map<String, Double> variables) : Double
+    + getVariables() : Set<String>
+    + toString() : String
+}
+
+class RegisterVar {
+    - variables : Map<String, Double>
+
+    + addVariable(String name, double value)
+    + getVariableValue(String name) : Double
+    + getVariableNames() : Set<String>
+}
+
+
+MathEngine --> RegisterVar
+MathEngine --> Function
+'Function --> RegisterOper
+''Function --> RegisterVar'
+
+'class RegisterOper{'
+    '- operationes : Map<String,Operation>'
+
+    '+ getOperation(String name) :Operation'
+    '+ doOperation(Operation oper) : Double'
+
+
+'MathEngine --> RegisterOper'
+'RegisterOper --> Operation'
+Function --> Operation
+class Quadratic implements Function{}
+class Simple implements Function{}
+
+class Number{
+
+}
+
+class Variable{
+
+}
+
+
+@enduml
