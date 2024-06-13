@@ -4,6 +4,7 @@ import edu.austral.ingsis.math.news.Function;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UnaryOperationFunction implements Function {
   private Function function;
@@ -18,14 +19,25 @@ public class UnaryOperationFunction implements Function {
   public double evaluate() {
     double value = function.evaluate();
     switch (operation) {
-      case "pow":
-        return Math.pow(value, 2);
       case "sqrt":
         return Math.sqrt(value);
       case "mod":
         return Math.abs(value);
       default:
         throw new UnsupportedOperationException("Operación no soportada");
+    }
+  }
+
+  public double evaluate(int value) {
+    // Aquí reemplazas la variable con el valor pasado como parámetro
+    double funcValue = function.evaluate(value);
+    switch (operation) {
+      case "mod":
+        return Math.abs(funcValue);
+      case "sqrt":
+        return Math.sqrt(funcValue); // Asumiendo que pow es siempre squared
+      default:
+        throw new UnsupportedOperationException("Operation not supported");
     }
   }
 
@@ -37,6 +49,13 @@ public class UnaryOperationFunction implements Function {
 
   @Override
   public String toString() {
-    return String.format("%s %s %s", function.toString(), operation);
+    String op;
+    if ((Objects.equals(operation, "sqrt"))){
+      op = "^(1/2)";
+      return String.format("(%s) %s", function.toString(), op);
+    } else {
+      op = "|";
+      return op + function.toString() + op;
+    }
   }
 }

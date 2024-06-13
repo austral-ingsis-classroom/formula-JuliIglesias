@@ -1,5 +1,10 @@
 package edu.austral.ingsis.math;
 
+import edu.austral.ingsis.math.news.Function;
+import edu.austral.ingsis.math.news.Operations.BinaryOperationFunction;
+import edu.austral.ingsis.math.news.Operations.UnaryOperationFunction;
+import edu.austral.ingsis.math.news.leaf.NumberFunction;
+import edu.austral.ingsis.math.news.leaf.VariableFunction;
 import edu.austral.ingsis.math.ols.functions.Simple;
 import edu.austral.ingsis.math.ols.functions.UnitaryFunction;
 import edu.austral.ingsis.math.ols.MathEngine;
@@ -22,102 +27,88 @@ public class ResolutionTest {
   /** Case 1 + 6 */
   @Test
   public void shouldResolveSimpleFunction1() {
-    variables.put("a", 1.0);
-    variables.put("b", 6.0);
-    RegisterVariable registerVariable = new RegisterVariable(variables);
-    Simple function = new Simple(1,6, new Addition());
-    double rst = mathEngine.completeFunction(registerVariable,function);
-
-    assertThat(rst, equalTo(7.0));
+    Function function = new BinaryOperationFunction(
+        new NumberFunction(1),
+        new NumberFunction(6),
+        "+"
+    );
+    assertThat(function.evaluate(), equalTo(7.0));
   }
 
   /** Case 12 / 2 */
   @Test
   public void shouldResolveSimpleFunction2() {
-    variables.put("a", 12.0);
-    variables.put("b", 2.0);
-    RegisterVariable registerVariable = new RegisterVariable(variables);
-    Simple function = new Simple(12,2, new Division());
-    double rst = mathEngine.completeFunction(registerVariable,function);
-
-    assertThat(rst, equalTo(6.0));
+    Function function = new BinaryOperationFunction(
+        new NumberFunction(12),
+        new NumberFunction(2),
+        "/"
+    );
+    assertThat(function.evaluate(), equalTo(6.0));
   }
 
   /** Case (9 / 2) * 3 = 13.5*/
   @Test
   public void shouldResolveSimpleFunction3() {
-    variables.put("a", 9.0);
-    variables.put("b", 2.0);
-    variables.put("c", 3.0);
-    RegisterVariable registerVariable = new RegisterVariable(variables);
-    Simple function = new Simple(9,2, new Division());
-    double rst1 = mathEngine.completeFunction(registerVariable,function);
-    Simple function2 = new Simple(rst1, 3, new Multiplication());
-    double rst2 = mathEngine.completeFunction(registerVariable,function2);
+    Function function = new BinaryOperationFunction(new BinaryOperationFunction(
+        new NumberFunction(9),
+        new NumberFunction(2),
+        "/"
+    ), new NumberFunction(3), "*");
 
-    assertThat(rst2, equalTo(13.5));
+    assertThat(function.evaluate(), equalTo(13.5));
   }
 
   /** Case (27 / 6) ^ 2 */
   @Test
   public void shouldResolveSimpleFunction4() {
-    variables.put("a", 27.0);
-    variables.put("b", 6.0);
-    variables.put("c", 2.0);
-    RegisterVariable registerVariable = new RegisterVariable(variables);
-    Simple function = new Simple(27,6, new Division());
-    double rst1 = mathEngine.completeFunction(registerVariable,function);
-    Simple function2 = new Simple(rst1, 2, new PowerOf());
-    double rst2 = mathEngine.completeFunction(registerVariable,function2);
+    Function function = new BinaryOperationFunction(
+        new BinaryOperationFunction(
+        new NumberFunction(27),
+        new NumberFunction(6),
+        "/"
+    ), new NumberFunction(2), "pow");
 
-    assertThat(rst2, equalTo(20.25));
+    assertThat(function.evaluate(), equalTo(20.25));
   }
 
   /** Case 36 ^ (1/2) */
   @Test
   public void shouldResolveSimpleFunction5() {
-    variables.put("a", 36.0);
-    RegisterVariable registerVariable = new RegisterVariable(variables);
-    UnitaryFunction function = new UnitaryFunction(36,new Square());
-    double rst = mathEngine.completeFunction(registerVariable,function);
+    Function function = new UnaryOperationFunction(
+        new NumberFunction(36),
+        "sqrt"
+    );
 
-    assertThat(rst, equalTo(6.0));
+    assertThat(function.evaluate(), equalTo(6.0));
   }
 
   /** Case |136| */
   @Test
   public void shouldResolveSimpleFunction6() {
-    variables.put("a", 136.0);
-    RegisterVariable registerVariable = new RegisterVariable(variables);
-    UnitaryFunction function = new UnitaryFunction(136,new Module());
-    double rst = mathEngine.completeFunction(registerVariable,function);
+    Function function = new UnaryOperationFunction(
+        new NumberFunction(136), "mod");
 
-    assertThat(rst, equalTo(136.0));
+    assertThat(function.evaluate(), equalTo(136.0));
   }
 
   /** Case |-136| */
   @Test
   public void shouldResolveSimpleFunction7() {
-    variables.put("a", -136.0);
-    RegisterVariable registerVariable = new RegisterVariable(variables);
-    UnitaryFunction function = new UnitaryFunction(-136,new Module());
-    double rst = mathEngine.completeFunction(registerVariable,function);
+    Function function = new UnaryOperationFunction(
+        new NumberFunction(-136), "mod");
 
-    assertThat(rst, equalTo(136.0));
+    assertThat(function.evaluate(), equalTo(136.0));
   }
 
   /** Case (5 - 5) * 8 */
   @Test
   public void shouldResolveSimpleFunction8() {
-    variables.put("a", 5.0);
-    variables.put("b", 5.0);
-    variables.put("c", 8.0);
-    RegisterVariable registerVariable = new RegisterVariable(variables);
-    Simple function = new Simple(5,5, new Subtraction());
-    double rst1 = mathEngine.completeFunction(registerVariable,function);
-    Simple function2 = new Simple(rst1, 8, new Multiplication());
-    double rst2 = mathEngine.completeFunction(registerVariable,function2);
+    Function function = new BinaryOperationFunction(new BinaryOperationFunction(
+        new NumberFunction(5),
+        new NumberFunction(5),
+        "-"
+    ), new NumberFunction(8), "*");
 
-    assertThat(rst2, equalTo(0.0));
+    assertThat(function.evaluate(), equalTo(0.0));
   }
 }

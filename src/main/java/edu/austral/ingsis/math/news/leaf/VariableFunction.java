@@ -17,6 +17,11 @@ public class VariableFunction implements Function {
     return 0;
   }
 
+  @Override
+  public double evaluate(int value) {
+    return value;
+  }
+
   public double evaluate(double value) {
     return value;
   }

@@ -24,6 +24,11 @@ public class CompositeFunction implements Function {
   }
 
   @Override
+  public double evaluate(int value) {
+    return 0;
+  }
+
+  @Override
   public List<String> getVariables() {
     List<String> variables = new ArrayList<>();
     for (Function function : functions) {

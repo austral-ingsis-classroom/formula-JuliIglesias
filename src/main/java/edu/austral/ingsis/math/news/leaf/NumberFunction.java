@@ -18,6 +18,11 @@ public class NumberFunction implements Function {
   }
 
   @Override
+  public double evaluate(int val) {
+    return value;
+  }
+
+  @Override
   public List<String> getVariables() {
     return new ArrayList<>();
   }

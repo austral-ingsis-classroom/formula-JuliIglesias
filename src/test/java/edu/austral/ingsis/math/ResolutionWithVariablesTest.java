@@ -1,5 +1,10 @@
 package edu.austral.ingsis.math;
 
+import edu.austral.ingsis.math.news.Function;
+import edu.austral.ingsis.math.news.Operations.BinaryOperationFunction;
+import edu.austral.ingsis.math.news.Operations.UnaryOperationFunction;
+import edu.austral.ingsis.math.news.leaf.NumberFunction;
+import edu.austral.ingsis.math.news.leaf.VariableFunction;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -10,7 +15,10 @@ public class ResolutionWithVariablesTest {
   /** Case 1 + x where x = 3 */
   @Test
   public void shouldResolveFunction1() {
-    final Double result = 4d;
+    Function function = new BinaryOperationFunction(
+        new NumberFunction(1), new VariableFunction("x"), "+");
+    double result = function.evaluate(3);
+
 
     assertThat(result, equalTo(4d));
   }
@@ -18,7 +26,9 @@ public class ResolutionWithVariablesTest {
   /** Case 12 / div where div = 4 */
   @Test
   public void shouldResolveFunction2() {
-    final Double result = 3d;
+    Function function = new BinaryOperationFunction(
+        new NumberFunction(12), new VariableFunction("div"), "/");
+    double result = function.evaluate(4);
 
     assertThat(result, equalTo(3d));
   }
@@ -26,7 +36,15 @@ public class ResolutionWithVariablesTest {
   /** Case (9 / x) * y where x = 3 and y = 4 */
   @Test
   public void shouldResolveFunction3() {
-    final Double result = 12d;
+    Function nine = new NumberFunction(9);
+    Function x = new VariableFunction("x");
+    Function y = new VariableFunction("y");
+
+    Function division = new BinaryOperationFunction(nine, x, "/");
+    double div = division.evaluate(3);
+    Function exponentiation = new BinaryOperationFunction(
+        new NumberFunction(div), y, "*");
+    double result = exponentiation.evaluate(4); // Pass a = 9 and b = 3 as arguments
 
     assertThat(result, equalTo(12d));
   }
@@ -34,7 +52,15 @@ public class ResolutionWithVariablesTest {
   /** Case (27 / a) ^ b where a = 9 and b = 3 */
   @Test
   public void shouldResolveFunction4() {
-    final Double result = 27d;
+    Function twentySeven = new NumberFunction(27);
+    Function a = new VariableFunction("a");
+    Function b = new VariableFunction("b");
+
+    Function division = new BinaryOperationFunction(twentySeven, a, "/");
+    double div = division.evaluate(9);
+    Function exponentiation = new BinaryOperationFunction(
+        new NumberFunction(div), b, "pow");
+    double result = exponentiation.evaluate(3); // Pass a = 9 and b = 3 as arguments
 
     assertThat(result, equalTo(27d));
   }
@@ -42,7 +68,10 @@ public class ResolutionWithVariablesTest {
   /** Case z ^ (1/2) where z = 36 */
   @Test
   public void shouldResolveFunction5() {
-    final Double result = 6d;
+    Function function = new UnaryOperationFunction(
+        new VariableFunction("z"), "sqrt");
+    double result = function.evaluate(36);
+
 
     assertThat(result, equalTo(6d));
   }
@@ -58,7 +87,12 @@ public class ResolutionWithVariablesTest {
   /** Case |value| - 8 where value = 8 */
   @Test
   public void shouldResolveFunction7() {
-    final Double result = 0d;
+    Function value = new VariableFunction("value");
+    Function absoluteValue = new UnaryOperationFunction(value, "abs");
+    Function eight = new NumberFunction(8);
+    Function subtraction = new BinaryOperationFunction(absoluteValue, eight, "-");
+
+    Double result = subtraction.evaluate(8);
 
     assertThat(result, equalTo(0d));
   }
