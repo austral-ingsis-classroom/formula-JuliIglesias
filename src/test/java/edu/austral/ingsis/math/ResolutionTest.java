@@ -2,10 +2,8 @@ package edu.austral.ingsis.math;
 
 import edu.austral.ingsis.math.functions.Simple;
 import edu.austral.ingsis.math.functions.UnitaryFunction;
-import edu.austral.ingsis.math.operations.Addition;
-import edu.austral.ingsis.math.operations.Division;
+import edu.austral.ingsis.math.operations.*;
 import edu.austral.ingsis.math.operations.Module;
-import edu.austral.ingsis.math.operations.Square;
 import edu.austral.ingsis.math.registers.RegisterVariable;
 import org.junit.jupiter.api.Test;
 
@@ -44,20 +42,34 @@ public class ResolutionTest {
     assertThat(rst, equalTo(6.0));
   }
 
-  /** Case (9 / 2) * 3 */
+  /** Case (9 / 2) * 3 = 13.5*/
   @Test
   public void shouldResolveSimpleFunction3() {
-    final Double result = 13.5;
+    variables.put("a", 9.0);
+    variables.put("b", 2.0);
+    variables.put("c", 3.0);
+    RegisterVariable registerVariable = new RegisterVariable(variables);
+    Simple function = new Simple(9,2, new Division());
+    double rst1 = mathEngine.completeFunction(registerVariable,function);
+    Simple function2 = new Simple(rst1, 3, new Multiplication());
+    double rst2 = mathEngine.completeFunction(registerVariable,function2);
 
-    assertThat(result, equalTo(13.5d));
+    assertThat(rst2, equalTo(13.5));
   }
 
   /** Case (27 / 6) ^ 2 */
   @Test
   public void shouldResolveSimpleFunction4() {
-    final Double result = 20.25;
+    variables.put("a", 27.0);
+    variables.put("b", 6.0);
+    variables.put("c", 2.0);
+    RegisterVariable registerVariable = new RegisterVariable(variables);
+    Simple function = new Simple(27,6, new Division());
+    double rst1 = mathEngine.completeFunction(registerVariable,function);
+    Simple function2 = new Simple(rst1, 2, new PowerOf());
+    double rst2 = mathEngine.completeFunction(registerVariable,function2);
 
-    assertThat(result, equalTo(20.25d));
+    assertThat(rst2, equalTo(20.25));
   }
 
   /** Case 36 ^ (1/2) */
@@ -96,8 +108,15 @@ public class ResolutionTest {
   /** Case (5 - 5) * 8 */
   @Test
   public void shouldResolveSimpleFunction8() {
-    final Double result = 0d;
+    variables.put("a", 5.0);
+    variables.put("b", 5.0);
+    variables.put("c", 8.0);
+    RegisterVariable registerVariable = new RegisterVariable(variables);
+    Simple function = new Simple(5,5, new Subtraction());
+    double rst1 = mathEngine.completeFunction(registerVariable,function);
+    Simple function2 = new Simple(rst1, 8, new Multiplication());
+    double rst2 = mathEngine.completeFunction(registerVariable,function2);
 
-    assertThat(result, equalTo(0d));
+    assertThat(rst2, equalTo(0.0));
   }
 }

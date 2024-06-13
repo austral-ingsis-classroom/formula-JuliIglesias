@@ -7,7 +7,7 @@ public class Multiplication implements Operation{
 
   @Override
   public Double doOperation(List<Double> numbers) {
-    double rst = 0;
+    double rst = 1;
     for (double number : numbers) {
       rst *= number;
     }
