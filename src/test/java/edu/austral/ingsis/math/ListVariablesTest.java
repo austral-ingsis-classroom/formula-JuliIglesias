@@ -1,8 +1,9 @@
 package edu.austral.ingsis.math;
 
-import edu.austral.ingsis.math.functions.Simple;
-import edu.austral.ingsis.math.operations.Addition;
-import edu.austral.ingsis.math.registers.RegisterVariable;
+import edu.austral.ingsis.math.ols.functions.Simple;
+import edu.austral.ingsis.math.ols.MathEngine;
+import edu.austral.ingsis.math.ols.operations.Addition;
+import edu.austral.ingsis.math.ols.registers.RegisterVariable;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

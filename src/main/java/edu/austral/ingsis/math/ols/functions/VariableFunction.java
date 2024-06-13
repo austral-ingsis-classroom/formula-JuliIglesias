@@ -1,35 +1,36 @@
-package edu.austral.ingsis.math.functions;
+package edu.austral.ingsis.math.ols.functions;
 
-import edu.austral.ingsis.math.operations.Operation;
-import edu.austral.ingsis.math.registers.RegisterOperation;
+import edu.austral.ingsis.math.ols.operations.Operation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
-public class Simple implements Function{
+public class VariableFunction implements Function{
   private final double a;
-  private final double b;
   private final Operation operation;
+  private final String b;
 
-  public Simple(double a, double b, Operation operation1) {
+  public VariableFunction(double a, String b, Operation operation) {
     this.a = a;
     this.b = b;
-    this.operation = operation1;
+    this.operation = operation;
   }
+
 
   @Override
   public double evaluate(Map<String, Double> variables) {
+    double var = variables.get(b);
     List<Double> num = new ArrayList<>();
     num.add(a);
-    num.add(b);
+    num.add(var);
     return operation.doOperation(num);
+
   }
 
   @Override
   public String getType() {
-    return "Simple Function";
+    return "Variable Function";
   }
 
   @Override

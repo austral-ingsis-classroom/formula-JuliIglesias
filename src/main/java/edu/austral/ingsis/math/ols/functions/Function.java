@@ -1,4 +1,4 @@
-package edu.austral.ingsis.math.functions;
+package edu.austral.ingsis.math.ols.functions;
 
 import java.util.Map;
 import java.util.Set;

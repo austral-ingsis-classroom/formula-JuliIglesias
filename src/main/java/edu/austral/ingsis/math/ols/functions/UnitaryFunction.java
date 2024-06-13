@@ -1,6 +1,6 @@
-package edu.austral.ingsis.math.functions;
+package edu.austral.ingsis.math.ols.functions;
 
-import edu.austral.ingsis.math.operations.Operation;
+import edu.austral.ingsis.math.ols.operations.Operation;
 
 import java.util.ArrayList;
 import java.util.List;

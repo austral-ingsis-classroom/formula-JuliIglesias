@@ -1,6 +1,6 @@
-package edu.austral.ingsis.math.registers;
+package edu.austral.ingsis.math.ols.registers;
 
-import edu.austral.ingsis.math.operations.Operation;
+import edu.austral.ingsis.math.ols.operations.Operation;
 
 
 import java.util.Map;

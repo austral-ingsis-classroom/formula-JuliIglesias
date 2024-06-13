@@ -1,16 +1,15 @@
-package edu.austral.ingsis.math.operations;
+package edu.austral.ingsis.math.ols.operations;
 
 import java.util.List;
 
-public class Subtraction implements Operation{
-  String operationTypes = "-";
-
+public class Addition implements Operation{
+  String operationTypes = "+";
 
   @Override
   public Double doOperation(List<Double> numbers) {
-    double rst = numbers.getFirst()*2;
+    double rst = 0;
     for (double number : numbers) {
-      rst -= number;
+      rst += number;
     }
     return rst;
   }
@@ -19,4 +18,6 @@ public class Subtraction implements Operation{
   public String getType() {
     return operationTypes;
   }
+
+
 }

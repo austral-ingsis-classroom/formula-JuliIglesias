@@ -1,10 +1,11 @@
 package edu.austral.ingsis.math;
 
-import edu.austral.ingsis.math.functions.Simple;
-import edu.austral.ingsis.math.functions.UnitaryFunction;
-import edu.austral.ingsis.math.operations.*;
-import edu.austral.ingsis.math.operations.Module;
-import edu.austral.ingsis.math.registers.RegisterVariable;
+import edu.austral.ingsis.math.ols.functions.Simple;
+import edu.austral.ingsis.math.ols.functions.UnitaryFunction;
+import edu.austral.ingsis.math.ols.MathEngine;
+import edu.austral.ingsis.math.ols.operations.*;
+import edu.austral.ingsis.math.ols.operations.Module;
+import edu.austral.ingsis.math.ols.registers.RegisterVariable;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;

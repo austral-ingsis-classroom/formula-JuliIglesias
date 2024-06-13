@@ -1,4 +1,4 @@
-package edu.austral.ingsis.math.operations;
+package edu.austral.ingsis.math.ols.operations;
 
 import java.util.List;
 

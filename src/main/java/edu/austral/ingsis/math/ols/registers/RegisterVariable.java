@@ -1,4 +1,4 @@
-package edu.austral.ingsis.math.registers;
+package edu.austral.ingsis.math.ols.registers;
 
 import java.util.Map;
 

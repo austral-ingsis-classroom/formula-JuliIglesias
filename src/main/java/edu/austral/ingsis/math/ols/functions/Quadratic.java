@@ -1,10 +1,10 @@
-package edu.austral.ingsis.math.functions;
+package edu.austral.ingsis.math.ols.functions;
 
-import edu.austral.ingsis.math.operations.Addition;
-import edu.austral.ingsis.math.operations.Multiplication;
-import edu.austral.ingsis.math.operations.Operation;
-import edu.austral.ingsis.math.operations.PowerOf;
-import edu.austral.ingsis.math.registers.RegisterOperation;
+import edu.austral.ingsis.math.ols.operations.Addition;
+import edu.austral.ingsis.math.ols.operations.Multiplication;
+import edu.austral.ingsis.math.ols.operations.Operation;
+import edu.austral.ingsis.math.ols.operations.PowerOf;
+import edu.austral.ingsis.math.ols.registers.RegisterOperation;
 
 import java.util.*;
 

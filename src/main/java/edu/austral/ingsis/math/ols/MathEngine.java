@@ -1,7 +1,7 @@
-package edu.austral.ingsis.math;
+package edu.austral.ingsis.math.ols;
 
-import edu.austral.ingsis.math.functions.Function;
-import edu.austral.ingsis.math.registers.RegisterVariable;
+import edu.austral.ingsis.math.ols.functions.Function;
+import edu.austral.ingsis.math.ols.registers.RegisterVariable;
 
 
 public class MathEngine {
