@@ -1,7 +1,6 @@
 package edu.austral.ingsis.math.news.Operations;
 
 import edu.austral.ingsis.math.news.Function;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -57,7 +56,7 @@ public class BinaryOperationFunction implements Function {
     }
   }
 
-    @Override
+  @Override
   public List<String> getVariables() {
     List<String> variables = new ArrayList<>();
     variables.addAll(left.getVariables());
@@ -67,7 +66,7 @@ public class BinaryOperationFunction implements Function {
 
   @Override
   public String toString() {
-    if (Objects.equals(operation, "pow")){
+    if (Objects.equals(operation, "pow")) {
       return String.format("%s %s %s", left.toString(), "^", right.toString());
     } else if (Objects.equals(operation, "/")) {
       return String.format("(%s %s %s)", left.toString(), operation, right.toString());
@@ -76,5 +75,4 @@ public class BinaryOperationFunction implements Function {
     }
     return String.format("%s %s %s", left.toString(), operation, right.toString());
   }
-
 }

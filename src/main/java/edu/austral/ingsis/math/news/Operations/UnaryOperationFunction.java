@@ -1,7 +1,6 @@
 package edu.austral.ingsis.math.news.Operations;
 
 import edu.austral.ingsis.math.news.Function;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -50,7 +49,7 @@ public class UnaryOperationFunction implements Function {
   @Override
   public String toString() {
     String op;
-    if ((Objects.equals(operation, "sqrt"))){
+    if ((Objects.equals(operation, "sqrt"))) {
       op = "^(1/2)";
       return String.format("(%s) %s", function.toString(), op);
     } else {

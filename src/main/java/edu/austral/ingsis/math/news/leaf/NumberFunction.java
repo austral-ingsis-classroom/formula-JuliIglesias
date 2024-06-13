@@ -1,7 +1,6 @@
 package edu.austral.ingsis.math.news.leaf;
 
 import edu.austral.ingsis.math.news.Function;
-
 import java.util.ArrayList;
 import java.util.List;
 
