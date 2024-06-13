@@ -72,14 +72,16 @@ public class ResolutionWithVariablesTest {
         new VariableFunction("z"), "sqrt");
     double result = function.evaluate(36);
 
-
     assertThat(result, equalTo(6d));
   }
 
   /** Case |value| - 8 where value = 8 */
   @Test
   public void shouldResolveFunction6() {
-    final Double result = 0d;
+    Function function = new BinaryOperationFunction(
+        new VariableFunction("value"), new NumberFunction(8), "-");
+    double result = function.evaluate(8);
+
 
     assertThat(result, equalTo(0d));
   }
@@ -88,7 +90,7 @@ public class ResolutionWithVariablesTest {
   @Test
   public void shouldResolveFunction7() {
     Function value = new VariableFunction("value");
-    Function absoluteValue = new UnaryOperationFunction(value, "abs");
+    Function absoluteValue = new UnaryOperationFunction(value, "mod");
     Function eight = new NumberFunction(8);
     Function subtraction = new BinaryOperationFunction(absoluteValue, eight, "-");
 
@@ -100,7 +102,12 @@ public class ResolutionWithVariablesTest {
   /** Case (5 - i) * 8 where i = 2 */
   @Test
   public void shouldResolveFunction8() {
-    final Double result = 24d;
+    Function function = new BinaryOperationFunction(
+         new NumberFunction(5),new VariableFunction("i"), "-");
+    double re = function.evaluate(2);
+    Function function1 = new BinaryOperationFunction(new NumberFunction(re), new NumberFunction(8), "*");
+    double result = function1.evaluate();
+
 
     assertThat(result, equalTo(24d));
   }
