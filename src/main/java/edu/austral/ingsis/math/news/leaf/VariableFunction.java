@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class VariableFunction implements Function {
-  private String name;
+  private final String name;
 
   public VariableFunction(String name) {
     this.name = name;

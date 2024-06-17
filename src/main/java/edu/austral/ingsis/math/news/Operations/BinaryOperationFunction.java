@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class BinaryOperationFunction implements Function {
-  private Function left;
-  private Function right;
-  private String operation;
+  private final Function left;
+  private final Function right;
+  private final String operation;
 
   public BinaryOperationFunction(Function left, Function right, String operation) {
     this.left = left;

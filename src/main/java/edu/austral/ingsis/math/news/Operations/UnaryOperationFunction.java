@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class UnaryOperationFunction implements Function {
-  private Function function;
-  private String operation;
+  private final Function function;
+  private final String operation;
 
   public UnaryOperationFunction(Function function, String operation) {
     this.function = function;
@@ -42,8 +42,7 @@ public class UnaryOperationFunction implements Function {
 
   @Override
   public List<String> getVariables() {
-    List<String> variables = new ArrayList<>(function.getVariables());
-    return variables;
+    return new ArrayList<>(function.getVariables());
   }
 
   @Override

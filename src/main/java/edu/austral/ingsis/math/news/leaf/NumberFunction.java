@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NumberFunction implements Function {
-  private double value;
+  private final double value;
 
   public NumberFunction(double value) {
     this.value = value;

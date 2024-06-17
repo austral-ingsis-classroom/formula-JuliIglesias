@@ -1,97 +1,49 @@
 @startuml
-'https://plantuml.com/class-diagram
-class MathEngine{
-    '- List<Function> functionTypes --> complete recibe String'
-
-    + completeFunction(RegisterVar variables, Function function) : Double
-
-}
-
-interface Operation{
-    - String operationTypes
-
-    + doOperation(List<Double> numbers) : Double
-}
-
-class Add implements Operation{
-    - String operationTypes
-
-    + doOperation(List<Double> numbers) : Double
-}
-class Sub implements Operation{
-    - String operationTypes
-
-    + doOperation(List<Double> numbers) : Double
-}
-class Div implements Operation{
-    - String operationTypes
-
-    + doOperation(List<Double> numbers) : Double
-}
-class Mult implements Operation{
-    - String operationTypes
-
-    + doOperation(List<Double> numbers) : Double
-}
-class Sqrt implements Operation{
-    - String operationTypes
-
-    + doOperation(List<Double> numbers) : Double
-}
-class Power implements Operation{
-    - String operationTypes
-
-    + doOperation(List<Double> numbers) : Double
-}
-class Module implements Operation{
-    - String operationTypes
-
-    + doOperation(List<Double> numbers) : Double
-}
-
+'https://plantuml.com/sequence-diagram
 
 interface Function {
-    - List<String> variables
-
-    + evaluate(Map<String, Double> variables) : Double
-    + getVariables() : Set<String>
-    + toString() : String
+    + double evaluate();
+    + double evaluate(int value);
+    + List<String> getVariables();
+    + String toString();
 }
 
-class RegisterVar {
-    - variables : Map<String, Double>
+class Number implements Function {
+    - double value;
 
-    + addVariable(String name, double value)
-    + getVariableValue(String name) : Double
-    + getVariableNames() : Set<String>
+    + double evaluate();
+    + double evaluate(int value);
+    + List<String> getVariables();
+    + String toString();
 }
 
+class Variable implements Function {
+    - String name;
 
-MathEngine --> RegisterVar
-MathEngine --> Function
-'Function --> RegisterOper
-''Function --> RegisterVar'
-
-'class RegisterOper{'
-    '- operationes : Map<String,Operation>'
-
-    '+ getOperation(String name) :Operation'
-    '+ doOperation(Operation oper) : Double'
-
-
-'MathEngine --> RegisterOper'
-'RegisterOper --> Operation'
-Function --> Operation
-class Quadratic implements Function{}
-class Simple implements Function{}
-
-class Number{
-
+    + double evaluate();
+    + double evaluate(int value);
+    + List<String> getVariables();
+    + String toString();
 }
 
-class Variable{
+class BinaryOperation implements Function {
+    - Function left;
+    - Function right;
+    - String operation;
 
+    + double evaluate();
+    + double evaluate(int value);
+    + List<String> getVariables();
+    + String toString();
 }
 
+class UnaryOperation implements Function {
+    - Function function;
+    - String operation;
 
+    + double evaluate();
+    + double evaluate(int value);
+    + List<String> getVariables();
+    + String toString();
+}
 @enduml
